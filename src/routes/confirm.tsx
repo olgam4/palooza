@@ -1,8 +1,9 @@
-import { useLocation } from 'solid-start'
+import { useLocation, useNavigate } from 'solid-start'
 
 export default function() {
   createEffect(async () => {
     const usable = new URLSearchParams(useLocation().search)
+    const navigator = useNavigate()
 
     const response = await fetch('/api/confirm', {
       method: 'POST',
@@ -11,7 +12,11 @@ export default function() {
       }),
     })
 
-    console.log(await response.json())
+    const data = await response.text()
+    const accessToken = data
+
+    localStorage.setItem('access_token', accessToken)
+    navigator('/')
   })
 
   return (

@@ -2,7 +2,7 @@
 export function GET() {
   const state = 'someverylongstring'
 
-  const scope = 'user-read-private user-read-email'
+  const scope = 'user-read-private user-read-email user-top-read'
 
   const response_type = 'code'
 

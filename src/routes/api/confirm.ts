@@ -14,22 +14,23 @@ export async function POST({ params, request }: any) {
   const clientSecret = 'REPLACE API CLIENT SECRET HERE'
   const clientId = 'REPLACE API CLIENT ID HERE'
 
-  const response = await fetch('https://accounts.spotify.com/api/token', {
+  const Authorization = 'Basic ' + btoa(clientId + ':' + clientSecret)
+
+  const response = await fetch('https://accounts.spotify.com/api/token?' + new URLSearchParams({
+    grant_type: 'authorization_code',
+    code,
+    redirect_uri: 'https://palooza.glo.quebec/confirm',
+  }), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: 'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64'),
+      Authorization,
     },
-    body: new URLSearchParams({
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: 'https://palooza.glo.quebec/confirm',
-    }),
   })
-
   const data = await response.json()
+  console.log(data)
 
-  return new Response(data.token, {
+  return new Response(data.access_token, {
     status: 200,
   })
 }
