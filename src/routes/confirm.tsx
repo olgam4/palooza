@@ -1,15 +1,17 @@
 import { useLocation } from 'solid-start'
 
 export default function() {
-  createEffect(() => {
+  createEffect(async () => {
     const usable = new URLSearchParams(useLocation().search)
 
-    fetch('/api/confirm', {
+    const response = await fetch('/api/confirm', {
       method: 'POST',
       body: JSON.stringify({
         code: usable.get('code')
       }),
     })
+
+    console.log(await response.json())
   })
 
   return (

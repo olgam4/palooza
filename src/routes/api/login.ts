@@ -6,7 +6,7 @@ export function GET() {
 
   const response_type = 'code'
 
-  const redirect_uri = 'http://localhost:3000/confirm'
+  const redirect_uri = 'https://palooza.glo.quebec/confirm'
 
   const client_id = 'REPLACE API CLIENT ID HERE'
 
