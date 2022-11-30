@@ -1,7 +1,6 @@
-import { nanoid } from 'nanoid'
 
 export function GET() {
-  const state = nanoid(16)
+  const state = 'someverylongstring'
 
   const scope = 'user-read-private user-read-email'
 

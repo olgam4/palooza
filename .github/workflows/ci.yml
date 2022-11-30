@@ -40,7 +40,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "REPLACE API CLIENT ID HERE"
-          replace: " ${{ secrets.SPOTIFY}} "
+          replace: "${{ secrets.SPOTIFY}}"
           include: "src/**"
           regex: true
 
@@ -48,7 +48,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "REPLACE API CLIENT SECRET HERE"
-          replace: " ${{ secrets.SPOTIFY_SECRET}} "
+          replace: "${{ secrets.SPOTIFY_SECRET}}"
           include: "src/**"
           regex: true
 

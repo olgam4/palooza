@@ -4,8 +4,6 @@ import { configDefaults } from 'vitest/config'
 import solid from 'solid-start/vite'
 // @ts-ignore
 import deno from 'solid-start-deno'
-// @ts-ignore
-import staticMode from 'solid-start-static'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { VitePWA } from 'vite-plugin-pwa'
 import replace, { RollupReplaceOptions } from '@rollup/plugin-replace'
@@ -69,18 +67,16 @@ const autoImportOptions: Partial<AutoImportOptions> = {
   ],
 }
 
-const IS_TAURI = process && process.env.TAURI === '1'
-
 export default defineConfig({
   test: {
     ...configDefaults,
   },
   plugins: [
-    solid({ adapter: IS_TAURI ? staticMode() : deno() }),
+    solid({ adapter: deno() }),
     tsconfigPaths(),
     AutoImport(autoImportOptions),
-    IS_TAURI ? undefined : VitePWA(pwaOptions),
-    IS_TAURI ? undefined : replace(replaceOptions),
+    VitePWA(pwaOptions),
+    replace(replaceOptions),
   ],
   build: {
     target: ['esnext'],
