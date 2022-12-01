@@ -86,6 +86,7 @@ export default defineConfig({
       '@motionone/solid',
       'motion',
       'solid-toast',
+      'html2canvas',
     ],
   },
   resolve: {
