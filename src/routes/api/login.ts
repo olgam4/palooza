@@ -1,4 +1,3 @@
-
 export function GET() {
   const state = 'someverylongstring'
 

@@ -27,7 +27,11 @@ export default function() {
   })
 
   createEffect(() => {
-    localStorage.getItem('access_token') && setIsLogged(true)
+    const { now } = JSON.parse(localStorage.getItem('access_token') || '{}')
+    if ((new Date() - now) < (3600 * 1000)) {
+      setIsLogged(true)
+    }
+
   })
 
   createEffect(on(artists, async () => {
@@ -73,7 +77,7 @@ export default function() {
   }
 
   return (
-    <div class="flex flex-center full space-x-2">
+    <div class="flex flex-col sm:flex-row flex-center full space-x-2">
       <Title>Palooza - Generate</Title>
       <div class="flex justify-center items-center space-x-5">
         <Show when={!isLogged()}
@@ -97,10 +101,10 @@ export default function() {
         </fieldset>
       </div>
 
-      <div id="poster" class="relative">
+      <div id="poster" class="relative w-[600px]">
         <div class="absolute left-[50px] w-[500px] h-[1016px] text-[#FEA98B] font-black top-4 uppercase text-center flex flex-col justify-around">
           <div>
-            <h1 class="text-7xl nerko">{name()}palooza</h1>
+            <h1 class="sm:text-7xl nerko">{name()}palooza</h1>
             <h2 class="text-sm text-gray-400">Presented by palooza.glo.quebec</h2>
           </div>
           <For each={(() => [firstDay, secondDay, thirdDay])()}>
@@ -143,7 +147,7 @@ export default function() {
             )}
           </For>
         </div>
-        <img src={bg} width="600" class="border-2" />
+        <img src={bg} width="600px" class="border-2" />
         <img src={spotify} width="50" class="absolute bottom-6 left-6" />
       </div>
     </div>
