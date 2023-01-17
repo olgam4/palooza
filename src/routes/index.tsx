@@ -62,7 +62,7 @@ export default function() {
   const getData = async () => {
     const selected = document.querySelector('input[name="type"]:checked')!.value
 
-    let code = JSON.parse(localStorage.getItem('access_token') || '{}').access_token
+    let code = JSON.parse(localStorage.getItem('access_token') || '{}').accessToken
 
     const data = await fetch('/api/data', {
       method: 'POST',
