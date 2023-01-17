@@ -15,7 +15,7 @@ export default function() {
     const data = await response.text()
     const accessToken = data
 
-    localStorage.setItem('access_token', { accessToken, now: new Date() })
+    localStorage.setItem('access_token', JSON.stringify({ accessToken, now: (new Date()).getUTCMilliseconds() }))
     navigator('/')
   })
 

@@ -28,10 +28,9 @@ export default function() {
 
   createEffect(() => {
     const { now } = JSON.parse(localStorage.getItem('access_token') || '{}')
-    if ((new Date() - now) < (3600 * 1000)) {
+    if (((new Date()).getUTCMilliseconds() - now) < (3600 * 1000)) {
       setIsLogged(true)
     }
-
   })
 
   createEffect(on(artists, async () => {
